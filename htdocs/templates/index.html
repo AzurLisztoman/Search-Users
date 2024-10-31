@@ -1,85 +1,86 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello</h1>
-    <input type="text" id="searchInput" placeholder="Введите имя..." hx-get="/a" 
-           hx-target="#u" hx-swap="outerHTML">
-    <p id = "u">aaa</p>
-    <button hx-get = "/a" hx-target="#u">UUUUU</button>
-    <h1>Список пользователей</h1>
-
-  <div class="form-container">
-    <input type="text" id="searchInput" placeholder="Введите имя..." 
-           hx-get="/api/users" hx-post = "/api/users" hx-target="#usersList"
-           hx-swap="outerHTML" hx-indicator=".htmx-indicator">
-  </div>
-
-  <div id="usersList" hx-swap="outerHTML"></div>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Htmx Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск пользователей</title>
   <script src="https://unpkg.com/htmx.org@1.8.0/dist/htmx.min.js"></script>
   <style>
+    h1 { font-size: 45px;
+  text-align: center;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #FA198B, #b91372);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  
+}
+
     body {
       font-family: Arial, sans-serif;
-    }
-    #usersList {
-      /* display: flex; */
-      flex-wrap: wrap;
-    }
-    .table {
-	width: 100%;
+      text-align: center;
+      background-color: black;
+}
+input[type=text] {
+  height: 20px;
+  width: 60%;
+	appearance: none;
 	border: none;
-	margin-bottom: 20px;
+	outline: none;
+	border-bottom: .2em solid #E91E63;
+  background-color: rgba(233, 30, 90, .2);	
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: white;
+  font-size: 16px;
 }
-.table thead th {
-	font-weight: bold;
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	background: #d8d8d8;
-	font-size: 14px;
+.table {
+ width: 80%;
+ border-collapse: collapse; /* Убираем двойные границы между ячейками */
+ border: none; /* Удаляем рамку таблицы */
+ font-family: sans-serif; /* Выбираем шрифт без засечек */
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень для объема */
+ color:white;
+ background-color: #79013D;
+
+ margin: 0 auto; 
+ margin-top: 20px;
 }
-.table thead tr th:first-child {
-	border-radius: 8px 0 0 8px;
+
+.table th, .table td {
+ padding: 15px; /* Отступы для ячеек */
+ text-align: left; /* Выравниваем текст по левому краю */
+ border-bottom: 1px solid #ddd; /* Тонкая линия между строками */
+ font-size: 16px; /* Размер шрифта */
+ border-radius: 30%;
 }
-.table thead tr th:last-child {
-	border-radius: 0 8px 8px 0;
+
+.table th {
+ background-color: #f2f2f2; /* Светлый фон для заголовка */
+ font-weight: bold; /* Жирный шрифт для заголовка */
 }
-.table tbody td {
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	font-size: 14px;
-	vertical-align: top;
+
+.table td img {
+ border-radius: 80%; /* Закругляем уголки аватаров */
+ width: 80px; /* Размер аватаров */
+ height: 80px;
+ margin-right: 10px; /* Отступ справа от аватаров */
 }
-.table tbody tr:nth-child(even){
-	background: #f3f3f3;
+
+.avatar{
+  width: 90px;
 }
-.table tbody tr td:first-child {
-	border-radius: 8px 0 0 8px;
+.id{
+  width: 30px;
 }
-.table tbody tr td:last-child {
-	border-radius: 0 8px 8px 0;
-}
+
+
   </style>
 </head>
 
 <body>
-  <h1>Список пользователей</h1>
-  <!-- <input type="text" name="search" placeholder="Введите имя..." 
-  hx-target="#r" 
-  hx-post="/process"
-  hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" >
-  <p id="r">jj</p> -->
+  <div class="header">
+    <h1>Список пользователей</h1>
   <div class="form-container">
     <input type="text" name="searchTerm" placeholder="Введите имя..." 
         hx-target="#usersList" 
@@ -87,27 +88,11 @@
         
         hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" >
   </div>
+  </div>
+  
 
   <div id="usersList" hx-swap="outerHTML">
   </div>
-  <!-- <div >
-    <table border="1px">
-        <thead>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Avatar</td>
-        </thead>
-        <tbody id="usersList" hx-swap="outerHTML">
-            {% for item in data %}
-        <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.avatarUrl }}</td>
-        </tr>
-      {% endfor %}
-        </tbody>
-    </table>
-  </div> -->
+  
 </body>
 </html>
-
