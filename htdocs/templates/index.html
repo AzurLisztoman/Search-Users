@@ -5,77 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Поиск пользователей</title>
   <script src="https://unpkg.com/htmx.org@1.8.0/dist/htmx.min.js"></script>
-  <style>
-    h1 { font-size: 45px;
-  text-align: center;
-  font-weight: 600;
-  background-image: linear-gradient(to left, #FA198B, #b91372);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  
-}
-
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: black;
-}
-input[type=text] {
-  height: 20px;
-  width: 60%;
-	appearance: none;
-	border: none;
-	outline: none;
-	border-bottom: .2em solid #E91E63;
-  background-color: rgba(233, 30, 90, .2);	
-	border-radius: .2em .2em 0 0;
-	padding: .4em;
-	color: white;
-  font-size: 16px;
-}
-.table {
- width: 80%;
- border-collapse: collapse; /* Убираем двойные границы между ячейками */
- border: none; /* Удаляем рамку таблицы */
- font-family: sans-serif; /* Выбираем шрифт без засечек */
- box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень для объема */
- color:white;
- background-color: #79013D;
-
- margin: 0 auto; 
- margin-top: 20px;
-}
-
-.table th, .table td {
- padding: 15px; /* Отступы для ячеек */
- text-align: left; /* Выравниваем текст по левому краю */
- border-bottom: 1px solid #ddd; /* Тонкая линия между строками */
- font-size: 16px; /* Размер шрифта */
- border-radius: 30%;
-}
-
-.table th {
- background-color: #f2f2f2; /* Светлый фон для заголовка */
- font-weight: bold; /* Жирный шрифт для заголовка */
-}
-
-.table td img {
- border-radius: 80%; /* Закругляем уголки аватаров */
- width: 80px; /* Размер аватаров */
- height: 80px;
- margin-right: 10px; /* Отступ справа от аватаров */
-}
-
-.avatar{
-  width: 90px;
-}
-.id{
-  width: 30px;
-}
-
-
-  </style>
+  <link rel="stylesheet" href="/static/main.css">
 </head>
 
 <body>
@@ -86,13 +16,31 @@ input[type=text] {
         hx-target="#usersList" 
         hx-post="/api/users"
         
-        hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" >
+        hx-swap="outerHTML" hx-trigger="keyup changed delay:500ms" >
   </div>
   </div>
   
-
-  <div id="usersList" hx-swap="outerHTML">
-  </div>
+<div id="usersList" hx-swap="outerHTML">
+<table class="table" border="1px">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Аватар профиля</th>
+        </tr>
+    </thead>
+    <tbody >
+        {% for item in data %}
+            <tr>
+              <td class="id">{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td class="avatar"><img src="{{ item.avatarUrl }}" alt="{{ item.name }}" width="50" height="50"></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+  
   
 </body>
 </html>
