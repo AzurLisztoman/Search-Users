@@ -3,76 +3,29 @@
 <head>
   <title>Поиск пользователей</title>
   <script src="https://unpkg.com/htmx.org@1.8.0/dist/htmx.min.js"></script>
-  <!-- <link rel="stylesheet" href="main.css"> -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    /* #usersList {
-      
-      flex-wrap: wrap;
-    }
-    .table {
-	width: 100%;
-	border: none;
-	margin-bottom: 20px;
-  text-align: center;
-}
-.table thead tr {
-	font-weight: bold;
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	background: #d8d8d8;
-	font-size: 14px;
-}
-.table thead tr td:first-child {
-	border-radius: 8px 0 0 8px;
-}
-.table thead tr th:last-child {
-	border-radius: 0 8px 8px 0;
-}
-.table tbody td {
-	text-align: left;
-	border: none;
-	padding: 10px 15px;
-	font-size: 14px;
-	vertical-align: top;
-}
-.table tbody tr:nth-child(even){
-	background: #f3f3f3;
-}
-.table tbody tr td:first-child {
-	border-radius: 8px 0 0 8px;
-}
-.table tbody tr td:last-child {
-	border-radius: 0 8px 8px 0;
-} */
-
-  </style>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
-  <div >
-    <table class="table" border="1px">
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>Avatar</td>
-            </tr>
-        </thead>
-        <tbody id="usersList" hx-swap="outerHTML">
-            {% for item in data %}
-                <tr>
-                  <td class="id">{{ item.id }}</td>
-                  <td>{{ item.name }}</td>
-                  <td class="avatar"><img src="{{ item.avatarUrl }}" alt="{{ item.name }}" width="50" height="50"></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <div id="usersList" hx-swap="outerHTML">
+  <table class="table" border="1px">
+      <thead>
+        <th>
+          <td>Id</td>
+          <td>Имя</td>
+          <td>Аватар профиля</td>
+      </th>
+      </thead>
+      <tbody >
+          {% for item in data %}
+              <tr>
+                <td class="id">{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td class="avatar"><img src="{{ item.avatarUrl }}" alt="{{ item.name }}" width="50" height="50"></td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
   </div>
 </body>
 </html>
