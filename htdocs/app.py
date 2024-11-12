@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 app = Flask(__name__)
 users = [
@@ -26,6 +26,10 @@ results = users
 def index():
     return render_template('index.html', data=users)
 
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory(app.static_folder, filename)
+
 # Endpoint для получения списка пользователей
 @app.route('/api/users', methods=['POST'])
 def get_users():
@@ -33,6 +37,8 @@ def get_users():
     if searchTerm:
         # Поиск пользователей, имена которых содержат searchTerm
         results = [user for user in users if searchTerm.lower() in user['name'].lower()]
+        # return render_template('index.html', data=results)
+        # return results
         return render_template('templ.html', data=results)
 
     else:
